@@ -68,3 +68,28 @@ const promptManager = () => {
         promptMenu()
     })
 };
+
+const promptMenu = () => {
+    return Inquirer.prompt([
+        {
+            type: list, 
+            name: 'menu',
+            message: 'How would you like to continue?',
+            choices: ['add engineer', 'add intern', 'complete team building']
+        }])
+        .then(userChoice => {
+            switch (userChoice.menu) {
+                case "add engineer":
+                    promptEngineer();
+                    break;
+                case "add intern":
+                    promptIntern();
+                    break;
+                default:
+                    buildTeam()
+            }
+        });
+};
+//promptIntern()
+//promptEngineer()
+//buildTeam
