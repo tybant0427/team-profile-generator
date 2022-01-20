@@ -12,7 +12,7 @@ const promptManager = () => {
         {
             type: 'input',
             name: 'name',
-            message: 'What is the manager name?',
+            message: 'Enter manager name.',
             validate: nameInput => {
                 if (nameInput) {
                     return true;
@@ -90,6 +90,129 @@ const promptMenu = () => {
             }
         });
 };
-//promptIntern()
-//promptEngineer()
+
+const promptEngineer = () => {
+    return Inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Enter engineer name.',
+            validate: engName => {
+                if (engName) {
+                    return true;
+                } else {
+                    console.log('Please enter engineer name!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Enter engineer ID',
+            validate: id => {
+                if (id) {
+                    return true;
+                } else {
+                    console.log('Please enter engineer ID!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Enter engineer email.',
+            validate: email => {
+                if (email) {
+                    return true;
+                } else {
+                    console.log('Please enter engineer email!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Enter Github username.',
+            validate: github => {
+                if (github) {
+                    return true;
+                } else {
+                    console.log('Please enter github username!');
+                    return false;
+                }
+            }
+        }
+    ]).then(answers => {
+        console.log(answers);
+        const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+        team.push(engineer);
+        promptMenu();
+    })
+};
+
+const promptIntern = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'Enter intern name',
+            validate: intName => {
+                if (intName) {
+                    return true;
+                } else {
+                    console.log('Please enter intern name!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Enter intern ID',
+            validate: id => {
+                if (id) {
+                    return true;
+                } else {
+                    console.log('Please enter intern ID!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Enter intern email',
+            validate: email => {
+                if (email) {
+                    return true;
+                } else {
+                    console.log('Please enter intern email!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'Enter name of school',
+            validate: school => {
+                if (school) {
+                    return true;
+                } else {
+                    console.log('Please enter school name!');
+                    return false;
+                }
+            }
+        }
+    ]).then(answers => {
+        console.log(answers);
+        const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+        team.push(intern);
+        promptMenu();
+    })
+};
+
 //buildTeam
