@@ -1,9 +1,20 @@
+//node modules
 const inquirer = require('inquirer');
+const fs = require("fs");
+
+//team positions
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+
+//new page
 const generateHTML = require('./src/page-template');
-const fs = require("fs"); 
+const path = require("path");
+const OUTPUT_DIR = path.resolve(__dirname, "output")
+const outputPath = path.join(OUTPUT_DIR, "team.html")
+
+ 
+//team array
 const team = [];
 
 
@@ -12,7 +23,7 @@ const promptManager = () => {
         {
             type: 'input',
             name: 'name',
-            message: 'Enter manager name.',
+            message: 'Enter manager name:',
             validate: nameInput => {
                 if (nameInput) {
                     return true;
@@ -25,7 +36,7 @@ const promptManager = () => {
         {
             type: 'input',
             name: 'id', 
-            message: 'Enter manager employee ID.',
+            message: 'Enter manager employee ID:',
             validate: id => {
                 if (id) {
                     return true;
@@ -38,7 +49,7 @@ const promptManager = () => {
         {
             type: 'input',
             name: 'email', 
-            message: 'Enter manager email address.',
+            message: 'Enter manager email address:',
             validate: email => {
                 if (email) {
                     return true;
@@ -51,7 +62,7 @@ const promptManager = () => {
         {
             type: 'input',
             name: 'officeNumber', 
-            message: 'Enter manager office number.',
+            message: 'Enter manager office number:',
             validate: officeNumber => {
                 if (officeNumber) {
                     return true;
@@ -70,9 +81,9 @@ const promptManager = () => {
 };
 
 const promptMenu = () => {
-    return Inquirer.prompt([
+    return inquirer.prompt([
         {
-            type: list, 
+            type: 'list', 
             name: 'menu',
             message: 'How would you like to continue?',
             choices: ['add engineer', 'add intern', 'complete team building']
@@ -92,11 +103,11 @@ const promptMenu = () => {
 };
 
 const promptEngineer = () => {
-    return Inquirer.prompt([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'name',
-            message: 'Enter engineer name.',
+            message: 'Enter engineer name:',
             validate: engName => {
                 if (engName) {
                     return true;
@@ -109,7 +120,7 @@ const promptEngineer = () => {
         {
             type: 'input',
             name: 'id',
-            message: 'Enter engineer ID',
+            message: 'Enter engineer ID:',
             validate: id => {
                 if (id) {
                     return true;
@@ -122,7 +133,7 @@ const promptEngineer = () => {
         {
             type: 'input',
             name: 'email',
-            message: 'Enter engineer email.',
+            message: 'Enter engineer email:',
             validate: email => {
                 if (email) {
                     return true;
@@ -135,7 +146,7 @@ const promptEngineer = () => {
         {
             type: 'input',
             name: 'github',
-            message: 'Enter Github username.',
+            message: 'Enter Github username:',
             validate: github => {
                 if (github) {
                     return true;
@@ -158,7 +169,7 @@ const promptIntern = () => {
         {
             type: 'input',
             name: 'name',
-            message: 'Enter intern name',
+            message: 'Enter intern name:',
             validate: intName => {
                 if (intName) {
                     return true;
@@ -171,7 +182,7 @@ const promptIntern = () => {
         {
             type: 'input',
             name: 'id',
-            message: 'Enter intern ID',
+            message: 'Enter intern ID:',
             validate: id => {
                 if (id) {
                     return true;
@@ -184,7 +195,7 @@ const promptIntern = () => {
         {
             type: 'input',
             name: 'email',
-            message: 'Enter intern email',
+            message: 'Enter intern email:',
             validate: email => {
                 if (email) {
                     return true;
@@ -197,7 +208,7 @@ const promptIntern = () => {
         {
             type: 'input',
             name: 'school',
-            message: 'Enter name of school',
+            message: 'Enter name of school:',
             validate: school => {
                 if (school) {
                     return true;
@@ -215,4 +226,12 @@ const promptIntern = () => {
     })
 };
 
-//buildTeam
+const buildTeam = () => {
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, generateHTML(team), "utf-8");
+}
+
+promptManager();
+

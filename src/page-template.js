@@ -1,8 +1,9 @@
 // create the team
-const generateTeam = team => {
-
+const generateTeam = (team) => {
+    const html = [];
     // create the manager html
     const generateManager = manager => {
+        
         return `
         <div class="card employee-card">
         <div class="card-header">
@@ -58,7 +59,7 @@ const generateTeam = team => {
         `;
     };
 
-    const html = [];
+
 
     html.push(team
         .filter(employee => employee.getRole() === "Manager")
