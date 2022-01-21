@@ -22,6 +22,20 @@ User will have to perform an npm install to initiate all required dependencies.
 Jest was used to perform tests on all class constructors to ensure they are running properly. 
 
 
+<img width="1185" alt="Screen Shot 2022-01-20 at 5 15 56 PM" src="https://user-images.githubusercontent.com/94083745/150445365-6e5edb5c-2270-404b-af86-f5d4d9755a18.png">
+
+## Sample HTML
+
+
+<img width="1482" alt="Screen Shot 2022-01-20 at 6 44 53 PM" src="https://user-images.githubusercontent.com/94083745/150445480-5c81f896-95a2-409f-9dc5-f82e9e584185.png">
+
+## Links 
+
+Screencastify and Github repo
+* https://watch.screencastify.com/v/lwR3Q8pgCpw6eytGhUTE
+* https://github.com/tybant0427/team-profile-generator
+
+
 
 
 
